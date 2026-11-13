@@ -1,0 +1,49 @@
+/*
+  DATOS DE LA INVITACIÓN
+  Cambia aquí el nombre, la fecha y los lugares: toda la invitación se
+  actualiza sola. (Los valores actuales son de ejemplo.)
+*/
+export const datos = {
+  /* Nombre como se mostrará en letra caligráfica */
+  nombre: "Sofía",
+  /* Nombre completo, para el cierre */
+  nombreCompleto: "Sofía Martínez",
+
+  /* Fecha y hora de la misa, con zona horaria (Colombia: -05:00) */
+  fecha: "2027-05-16T10:00:00-05:00",
+
+  /* Frase de la portada */
+  frase: "«Dejad que los niños vengan a mí»",
+  cita: "Mateo 19, 14",
+
+  ceremonia: {
+    titulo: "Santa Misa",
+    lugar: "Parroquia San José",
+    hora: "10:00 AM",
+    mapa: "https://maps.google.com/?q=Parroquia+San+Jose",
+  },
+
+  recepcion: {
+    titulo: "Recepción",
+    lugar: "Salón Los Olivos",
+    hora: "12:30 PM",
+    mapa: "https://maps.google.com/?q=Salon+Los+Olivos",
+  },
+
+  /* Padrinos (déjalo vacío [] para ocultarlos) */
+  padrinos: ["Carlos Pérez", "Laura Gómez"],
+  /* Padres */
+  padres: ["Andrés Martínez", "Paula Rojas"],
+};
+
+/* Partes de la fecha ya listas para mostrar */
+const f = new Date(datos.fecha);
+const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+const DIAS = ["DOMINGO", "LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO"];
+const enZona = new Date(f.getTime() + (f.getTimezoneOffset() - 300) * 60000); // hora de Colombia
+export const fechaPartes = {
+  dia: enZona.getDate(),
+  mes: MESES[enZona.getMonth()],
+  anio: enZona.getFullYear(),
+  diaSemana: DIAS[enZona.getDay()],
+};

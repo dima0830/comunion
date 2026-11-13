@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Cáliz con la hostia: dorado oscuro con el navegador en tema claro, dorado claro en tema oscuro -->
+  <style>
+    .oro { fill: #a8823f; } .hostia { fill: none; stroke: #a8823f; }
+    @media (prefers-color-scheme: dark) { .oro { fill: #e6cf98; } .hostia { stroke: #e6cf98; } }
+  </style>
+  <circle class="hostia" cx="32" cy="13" r="9" stroke-width="4"/>
+  <path class="oro" d="M11 25h42c0 13-9 21-21 21S11 38 11 25z"/>
+  <rect class="oro" x="28.5" y="44" width="7" height="10"/>
+  <path class="oro" d="M17 62c0-6.5 6.5-10 15-10s15 3.5 15 10z"/>
+</svg>
