@@ -41,6 +41,9 @@
       </div>
 
       <p v-if="statusMessage" class="status-message" :class="statusType">{{ statusMessage }}</p>
+      <p v-if="statusMessage && statusType === 'success' && datos.modoMuestra" class="nota-muestra">
+        Tarjeta de muestra: tus fotos no se guardaron.
+      </p>
      </div>
     </div>
   </section>
@@ -48,6 +51,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { datos } from "@/datos";
 
 interface PreviewFile {
   file: File;
@@ -184,5 +188,12 @@ async function enviarFotos() {
 
 .status-message.error {
   color: #9b3b26;
+}
+
+.nota-muestra {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--oro-rosa);
 }
 </style>
