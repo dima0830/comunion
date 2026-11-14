@@ -55,7 +55,9 @@
           <input v-model="guestPhone" type="tel" autocomplete="tel" class="campo-entrada" placeholder="Ej: 300 123 4567" />
         </label>
 
-        <fieldset v-if="isAttending" class="campo">
+        <!-- siempre visible (la ventana no cambia de alto y los campos no se mueven);
+             con "No puedo" queda atenuada y desactivada -->
+        <fieldset class="campo campo-pases" :disabled="attendance === NO_ASISTE">
           <legend class="campo-etiqueta">Según tu pase asignado, ¿cuántos pases usarás?</legend>
           <div class="pases">
             <button
@@ -194,6 +196,14 @@ async function confirmAttendance() {
   height: 16px;
   margin: 0;
   accent-color: var(--verde);
+}
+
+.campo-pases {
+  transition: opacity 0.3s ease;
+}
+
+.campo-pases:disabled {
+  opacity: 0.35;
 }
 
 .pases {

@@ -358,9 +358,9 @@ onMounted(() => {
   left: -6%;
 }
 
+/* (el reflejo -1 lo pone la regla de movimiento de arriba, que además la hace crecer) */
 .rosas.derecha {
   right: -6%;
-  scale: -1 1;
   animation-delay: -3.5s;
 }
 
