@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Fotos originales en alta resolución (la web usa las versiones .webp optimizadas)
+fotos-originales/

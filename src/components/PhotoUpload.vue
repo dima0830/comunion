@@ -1,6 +1,7 @@
 <template>
   <section class="fotos-section panel">
     <div v-revelar class="seccion">
+     <div class="arco arco-seccion">
       <h2 class="titulo-seccion">Momentos</h2>
       <p class="texto-seccion">Comparte tus fotos y videos de este hermoso día</p>
 
@@ -40,6 +41,7 @@
       </div>
 
       <p v-if="statusMessage" class="status-message" :class="statusType">{{ statusMessage }}</p>
+     </div>
     </div>
   </section>
 </template>
@@ -119,8 +121,7 @@ async function enviarFotos() {
 }
 
 .fotos-section .seccion {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding: var(--espacio-seccion) 26px calc(var(--espacio-seccion) / 2);
 }
 
 .input-oculto {

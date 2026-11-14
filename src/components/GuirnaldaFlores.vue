@@ -1,27 +1,11 @@
 <template>
-  <!--
-    GUIRNALDA DE ROSAS
-    - divisor: va ENTRE dos secciones; no ocupa espacio y queda montada sobre la
-      unión (mitad encima de cada una), así no se ve ninguna línea de corte.
-    - arriba / abajo: pegada al borde superior o inferior de la sección que la
-      contiene (esa sección necesita position: relative).
-  -->
-  <div v-if="tipo === 'divisor'" class="divisor" aria-hidden="true">
-    <img :src="imagenes.divisor" alt="" class="flores" />
-  </div>
-  <img v-else :src="imagenes[tipo]" alt="" class="flores borde" :class="tipo" aria-hidden="true" />
+  <!-- Rosas creciendo desde el borde inferior de la sección que la contiene
+       (esa sección necesita position: relative) -->
+  <img :src="abajo" alt="" class="flores borde abajo" aria-hidden="true" />
 </template>
 
 <script setup lang="ts">
-import divisor from "@/assets/images/guirnalda-divisor.webp";
-import arriba from "@/assets/images/guirnalda-arriba.webp";
 import abajo from "@/assets/images/guirnalda-abajo.webp";
-
-defineProps<{
-  tipo: "divisor" | "arriba" | "abajo";
-}>();
-
-const imagenes = { divisor, arriba, abajo };
 </script>
 
 <style scoped>

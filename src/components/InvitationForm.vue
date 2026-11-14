@@ -1,7 +1,9 @@
 <template>
-  <section id="confirmar" v-revelar class="seccion confirmacion panel">
+  <section id="confirmar" class="confirmacion panel">
+   <div v-revelar class="seccion">
+    <div class="arco arco-seccion">
     <h2 class="titulo-seccion">Confirmación</h2>
-    <p class="texto-seccion">¿Nos acompañas en este día tan especial?</p>
+    <p class="texto-seccion">¿Me acompañas en este día tan especial?</p>
 
     <!-- Ícono de línea: lista con vistos -->
     <svg class="icono-linea" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -82,6 +84,8 @@
         </button>
       </form>
     </VentanaModal>
+    </div>
+   </div>
   </section>
 </template>
 
@@ -158,9 +162,8 @@ async function confirmAttendance() {
 </script>
 
 <style scoped>
-.confirmacion {
-  padding-top: 100px;
-  padding-bottom: 100px;
+.confirmacion .seccion {
+  padding: calc(var(--espacio-seccion) / 2) 26px var(--espacio-seccion);
 }
 
 .gracias {

@@ -61,7 +61,7 @@ onBeforeUnmount(() => observador?.disconnect());
   max-width: 220px;
   aspect-ratio: 4 / 5;
   margin: 0 auto;
-  border-radius: 999px 999px 10px 10px;
+  border-radius: 24px;
   overflow: hidden;
   background: #f2ecda; /* mismo tono que el fondo del video */
   box-shadow: 0 12px 24px -14px rgba(60, 50, 30, 0.45);
@@ -73,7 +73,7 @@ onBeforeUnmount(() => observador?.disconnect());
   position: absolute;
   inset: 6px;
   border: 1px solid var(--oro-claro);
-  border-radius: 999px 999px 6px 6px;
+  border-radius: 19px;
   pointer-events: none;
 }
 

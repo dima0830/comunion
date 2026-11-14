@@ -2,6 +2,7 @@ import { createApp, type Directive } from "vue";
 import App from "./App.vue";
 import { router } from "./router";
 import "./assets/css/main.css";
+import { paralaje } from "./paralaje";
 
 /* v-revelar: el elemento aparece suavemente cuando entra en pantalla (una sola vez) */
 const revelar: Directive<HTMLElement> = {
@@ -23,4 +24,5 @@ const revelar: Directive<HTMLElement> = {
 const app = createApp(App);
 app.use(router);
 app.directive("revelar", revelar);
+app.directive("paralaje", paralaje);
 app.mount("#app");

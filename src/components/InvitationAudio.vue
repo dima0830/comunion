@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 /* Canción opcional: cualquier .mp3 en src/assets/audio/ (si no hay, no se muestra el botón) */
 const canciones = import.meta.glob<string>("../assets/audio/*.{mp3,m4a}", { eager: true, query: "?url", import: "default" });
 const cancionUrl = Object.values(canciones)[0] ?? null;
@@ -44,6 +44,40 @@ async function alternar() {
     sonando.value = false;
   }
 }
+
+/*
+  Empieza a sonar con el primer toque en la invitación: los navegadores no
+  dejan sonar audio sin que la persona toque algo antes (deslizar no cuenta).
+  Si el toque es en el propio botón, lo maneja el botón.
+*/
+const EVENTOS = ["click", "touchend", "keydown"] as const;
+let esperando = false;
+
+function dejarDeEsperar() {
+  if (!esperando) return;
+  esperando = false;
+  EVENTOS.forEach((e) => window.removeEventListener(e, alPrimerToque, true));
+}
+
+async function alPrimerToque(evento: Event) {
+  const audio = audioRef.value;
+  if (!audio || !audio.paused) return dejarDeEsperar();
+  if ((evento.target as Element | null)?.closest?.(".musica-flotante")) return dejarDeEsperar();
+  try {
+    await audio.play();
+    sonando.value = true;
+    dejarDeEsperar();
+  } catch {
+    // el navegador aún no lo permite: se intenta en el siguiente toque
+  }
+}
+
+onMounted(() => {
+  if (!cancionUrl) return;
+  esperando = true;
+  EVENTOS.forEach((e) => window.addEventListener(e, alPrimerToque, true));
+});
+onBeforeUnmount(dejarDeEsperar);
 </script>
 
 <style scoped>

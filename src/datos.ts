@@ -34,6 +34,12 @@ export const datos = {
   padrinos: ["Carlos Pérez", "Laura Gómez"],
   /* Padres */
   padres: ["Andrés Martínez", "Paula Rojas"],
+
+  /*
+    Frases al pie de cada foto de "Un bello recuerdo", en el mismo orden que
+    las fotos (sofia1, sofia2, …). Si una foto no tiene frase, el pie va vacío.
+  */
+  pieFotos: ["Esperando este día", "Con mi Biblia", "En oración", "Con alegría y fe"],
 };
 
 /* Partes de la fecha ya listas para mostrar */
