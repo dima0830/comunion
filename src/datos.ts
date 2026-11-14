@@ -6,7 +6,7 @@
 export const datos = {
   /*
     Tarjeta de muestra: los formularios (confirmación y canción) no envían
-    nada, solo muestran el mensaje de agradecimiento con una nota de muestra.
+    nada, solo muestran el mensaje de agradecimiento.
     Ponlo en false para una invitación real con servidor.
   */
   modoMuestra: true,

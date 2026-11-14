@@ -21,9 +21,6 @@
         Gracias por avisarnos, <strong>{{ submittedName }}</strong>. Te vamos a extrañar.
       </template>
     </p>
-    <p v-if="submitted && datos.modoMuestra" class="nota-muestra">
-      Tarjeta de muestra: tu respuesta no se guardó.
-    </p>
     <button v-else type="button" class="btn-verde" @click="abierta = true">
       Confirmar asistencia
     </button>
@@ -167,13 +164,6 @@ async function confirmAttendance() {
 
 .gracias {
   margin-top: 4px;
-}
-
-.nota-muestra {
-  margin: 10px 0 0;
-  font-size: 0.78rem;
-  font-style: italic;
-  color: var(--oro-rosa);
 }
 
 .rsvp-form {

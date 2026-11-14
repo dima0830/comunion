@@ -59,7 +59,6 @@
             <p v-if="enviada" class="texto-seccion">
               ¡Gracias! Anotamos <strong>{{ enviadaCancion }}</strong> para la celebración.
             </p>
-            <p v-if="enviada && datos.modoMuestra" class="nota-muestra">Tarjeta de muestra: tu canción no se guardó.</p>
             <form v-else class="formulario" @submit.prevent="enviar">
               <label class="campo">
                 <span class="campo-etiqueta">Tu nombre</span>
@@ -228,13 +227,6 @@ async function enviar() {
   width: min(100%, 320px);
   padding: 40px 24px 32px;
   text-align: center;
-}
-
-.nota-muestra {
-  margin: 10px 0 0;
-  font-size: 0.78rem;
-  font-style: italic;
-  color: var(--oro-rosa);
 }
 
 .icono-panel {
