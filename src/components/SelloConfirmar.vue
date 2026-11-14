@@ -26,15 +26,29 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 const visible = ref(false);
 let pasoPortada = false;
 let enConfirmar = false;
+let enGaleria = false;
 const observadores: IntersectionObserver[] = [];
 
 function actualizar() {
-  visible.value = pasoPortada && !enConfirmar;
+  visible.value = pasoPortada && !enConfirmar && !enGaleria;
 }
 
 onMounted(() => {
   const portada = document.querySelector("#inicio");
   const confirmar = document.querySelector("#confirmar");
+  const galeria = document.querySelector("#recuerdos");
+  if (galeria) {
+    // oculto mientras la galería ocupa el centro de la pantalla (no tapa las fotos)
+    const o = new IntersectionObserver(
+      ([e]) => {
+        enGaleria = e.isIntersecting;
+        actualizar();
+      },
+      { rootMargin: "-35% 0px -35% 0px" },
+    );
+    o.observe(galeria);
+    observadores.push(o);
+  }
   if (portada) {
     const o = new IntersectionObserver(([e]) => {
       pasoPortada = !e.isIntersecting;
