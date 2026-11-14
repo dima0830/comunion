@@ -59,6 +59,7 @@
             <p v-if="enviada" class="texto-seccion">
               ¡Gracias! Anotamos <strong>{{ enviadaCancion }}</strong> para la celebración.
             </p>
+            <p v-if="enviada && datos.modoMuestra" class="nota-muestra">Tarjeta de muestra: tu canción no se guardó.</p>
             <form v-else class="formulario" @submit.prevent="enviar">
               <label class="campo">
                 <span class="campo-etiqueta">Tu nombre</span>
@@ -94,6 +95,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { datos } from "@/datos";
+import { enviarFormulario } from "@/envio";
 import VideoGiratorio from "@/components/VideoGiratorio.vue";
 
 const pestanas = [
@@ -126,12 +128,7 @@ async function enviar() {
   error.value = "";
   enviando.value = true;
   try {
-    const respuesta = await fetch("/api/canciones", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fullName: nombre.value.trim(), song: cancion.value.trim() }),
-    });
-    if (!respuesta.ok) throw new Error();
+    await enviarFormulario("/api/canciones", { fullName: nombre.value.trim(), song: cancion.value.trim() });
     enviadaCancion.value = cancion.value.trim();
     enviada.value = true;
   } catch {
@@ -231,6 +228,13 @@ async function enviar() {
   width: min(100%, 320px);
   padding: 40px 24px 32px;
   text-align: center;
+}
+
+.nota-muestra {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--oro-rosa);
 }
 
 .icono-panel {

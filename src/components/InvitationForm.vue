@@ -21,6 +21,9 @@
         Gracias por avisarnos, <strong>{{ submittedName }}</strong>. Te vamos a extrañar.
       </template>
     </p>
+    <p v-if="submitted && datos.modoMuestra" class="nota-muestra">
+      Tarjeta de muestra: tu respuesta no se guardó.
+    </p>
     <button v-else type="button" class="btn-verde" @click="abierta = true">
       Confirmar asistencia
     </button>
@@ -92,6 +95,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { datos } from "@/datos";
+import { enviarFormulario } from "@/envio";
 import VentanaModal from "@/components/VentanaModal.vue";
 
 // Los valores se guardan igual que antes en /api/rsvp
@@ -136,18 +140,13 @@ async function confirmAttendance() {
   const pases = isAttending.value ? (passesCount.value ?? 0) : 0;
 
   try {
-    const response = await fetch("/api/rsvp", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fullName: guestName.value.trim(),
-        phone: guestPhone.value.trim(),
-        attendance: attendance.value,
-        passesCount: pases,
-        message: guestMessage.value.trim(),
-      }),
+    await enviarFormulario("/api/rsvp", {
+      fullName: guestName.value.trim(),
+      phone: guestPhone.value.trim(),
+      attendance: attendance.value,
+      passesCount: pases,
+      message: guestMessage.value.trim(),
     });
-    if (!response.ok) throw new Error("No se pudo guardar la confirmación.");
     submittedName.value = guestName.value.trim();
     submittedPasses.value = pases;
     submitted.value = true;
@@ -168,6 +167,13 @@ async function confirmAttendance() {
 
 .gracias {
   margin-top: 4px;
+}
+
+.nota-muestra {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--oro-rosa);
 }
 
 .rsvp-form {
