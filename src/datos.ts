@@ -11,6 +11,15 @@ export const datos = {
   */
   modoMuestra: true,
 
+  /*
+    Plan Básica: las confirmaciones (y canciones) se guardan en la hoja de
+    Google de Innube. "evento" es el nombre de la pestaña; "hojaConfirmaciones"
+    es la URL /exec del script (ver /home/dima/innube/confirmaciones).
+    Si está vacía, se usa el servidor propio (/api/...).
+  */
+  evento: "comunion-sofia",
+  hojaConfirmaciones: "",
+
   /* Nombre como se mostrará en letra caligráfica */
   nombre: "Sofía",
   /* Nombre completo, para el cierre */
